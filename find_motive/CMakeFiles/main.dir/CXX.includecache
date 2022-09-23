@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bricedumont/epita_depots/exo_cpp/find_motive/main.cpp
+iostream
+-
+unistd.h
+-
+sources.h
+/home/bricedumont/epita_depots/exo_cpp/find_motive/sources.h
+string
+-
+
+/home/bricedumont/epita_depots/exo_cpp/find_motive/sources.h
+string
+-
+fstream
+-
+
