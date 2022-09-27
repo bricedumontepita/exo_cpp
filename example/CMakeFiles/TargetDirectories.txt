@@ -1,4 +1,0 @@
-/home/bricedumont/epita_depots/exo_cpp/example/CMakeFiles/rebuild_cache.dir
-/home/bricedumont/epita_depots/exo_cpp/example/CMakeFiles/edit_cache.dir
-/home/bricedumont/epita_depots/exo_cpp/example/CMakeFiles/main.dir
-/home/bricedumont/epita_depots/exo_cpp/example/CMakeFiles/mysource.dir
