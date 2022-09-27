@@ -7,3 +7,6 @@
 !.gitignore
 !is_prime_prog
 !find_motive
+
+
+*/CMakeCache.txt
