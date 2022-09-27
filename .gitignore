@@ -5,3 +5,5 @@
 !*.txt
 !*.md
 !.gitignore
+!is_prime_prog
+!find_motive

@@ -1,0 +1,13 @@
+
+## FIND MOTIVE:
+
+attention return 1 quand pas de fichier
+
+attention format affichage
+
+Optimisation: seul le nombre d'occurence est utile, pas les occurences en elles-mêmes, donc un simple entier suffit à la place d'un StrIntMap.
+
+Rmq bonne pratique: 
+
+https://moodle.cri.epita.fr/pluginfile.php/87767/mod_resource/content/0/02.slides.pdf
+page 5 diapo 2 : ne pas faire de "using namespace std;"

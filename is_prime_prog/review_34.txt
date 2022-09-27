@@ -1,0 +1,16 @@
+## IS PRIME: 
+
+# DEPOT
+attention au nom is-prime-prog
+
+# CODE
+Le programme ne teste pas si c'est premier ou pas premier, mais si c'est paire ou impaire pour tout nombre supérieur à 2.
+
+Il faut mettre x % i plutot.
+Attention au début de la boucle, 0 et 1 ne sont pas premier.
+
+attention à l'affichage :
+ne pas mettre "Entrez un nombre"
+et respecter le format du prof. (Voir Teams équipe C++)
+
+Indice optimisation : Il n'est pas nécessaire de vérifier avec chaque nombre inférieur.
