@@ -1,12 +1,15 @@
 *
 
 !*.c
+!*.cpp
 !*.h
+!*.hh
 !*.txt
 !*.md
 !.gitignore
 !is_prime_prog
 !find_motive
+!cartesian_vector_param
 
 
 */CMakeCache.txt
