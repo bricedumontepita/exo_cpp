@@ -2,85 +2,131 @@
 #include <ostream>
 #include <initializer_list>
 #include <cassert>
-
+#include <string>
+#include <cstring>
+#include <iterator>
+#include <iostream>
+#include <vector>
+#include <initializer_list>
 #include "vector.hh"
 
-
-Vector::Vector(float a, float b)
-: a_{a}, b_{b} {
-
+Vector::Vector()
+{
+    size_ = NDIM;
+    for (size_t i = 0; i < NDIM; ++i)
+    {
+        coords_[i] = 0;
+    }
 }
 
-Vector& Vector::operator+=(const Vector &rhs)
+
+Vector::Vector(std::initializer_list<value> l)
 {
-    a_ += rhs[0];
-    b_ += rhs[1];
+    size_ = l.size();
+    size_t index = 0;
+    std::initializer_list<value>::iterator it;
+    for (it = l.begin(); it != l.end(); ++it)
+    {
+        coords_[index++] = *it;
+    }
+}
+
+size_t Vector::getSize() const {
+    return size_;
+}
+
+Vector &Vector::operator+=(const Vector &rhs)
+{
+    assert(rhs.getSize() <= this->getSize());
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        coords_[i] += rhs[i];
+    }
     return *this;
 }
 
-Vector& Vector::operator-=(const Vector &rhs)
+Vector &Vector::operator-=(const Vector &rhs)
 {
-    a_ -= rhs[0];
-    b_ -= rhs[1];
+    assert(rhs.getSize() <= this->getSize());
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        coords_[i] -= rhs[i];
+    }
     return *this;
+
 }
 
 Vector Vector::operator+(const Vector &rhs)
 {
-    auto u = Vector((*this)[0] + rhs[0], (*this)[1] + rhs[1]);
+    auto u = Vector();
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        u[i] = rhs[i] + (*this)[i];
+    }
     return u;
-}
-
-float Vector::operator*(const Vector &rhs)
-{
-    auto n = (*this)[0] * rhs[0] + (*this)[1] * rhs[1];
-    return n;
 }
 
 Vector Vector::operator-(const Vector &rhs)
 {
-    auto u = Vector((*this)[0] - rhs[0], (*this)[1] - rhs[1]);
+    auto u = Vector();
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        u[i] = (*this)[i] - rhs[i]; // doute
+    }
     return u;
 }
 
-float Vector::operator[](size_t index) const
+value Vector::operator*(const Vector &rhs)
 {
-    assert(index <= 1);
-    if (index == 0)
-        return a_;
-    else
-        return b_;
-}
-
-float &Vector::operator[](size_t index)
-{
-    assert(index <= 1);
-    if (index == 0)
-        return a_;
-    else
-        return b_;
+    value n = 0;
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        n += rhs[i] * (*this)[i];
+    }
+    return n;
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Vector& rhs) {
-    os << "{" << rhs[0] << ", " << rhs[1] << "}";
+value Vector::operator[](size_t index) const
+{
+    assert(index < this->getSize());
+    return coords_[index];
+}
+
+value &Vector::operator[](size_t index)
+{
+    assert(index < this->getSize());
+    return coords_[index];
+}
+
+std::ostream &operator<<(std::ostream &os, const Vector &rhs)
+{
+    os << "{";
+    
+    for (size_t i = 0; i < rhs.getSize(); i++)
+    {
+        os << rhs[i] << (i < rhs.getSize() - 1 ? "," : "");
+    }
+    os << "}";
     return os;
 }
 
-Vector operator*(const Vector& rhs, float lambda) {
-    auto u = Vector(rhs[0] * lambda, rhs[1] * lambda);
+Vector operator*(const Vector &rhs, value lambda)
+{
+    auto u = Vector();
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        u[i] = rhs[i] * lambda;
+    }
     return u;
 }
 
-Vector operator+=(const Vector& rhs, float lambda) {
-    Vector u = rhs;
-    u[0] += lambda;
-    return u;
+Vector operator+=(Vector &rhs, value lambda)
+{
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        rhs[i] += lambda; // doute
+    }
+    return rhs;
 }
 
-Vector operator*=(const Vector& rhs, float lambda) {
-    Vector u = rhs;
-    u[0] *= lambda;
-    u[1] *= lambda;
-    return u;
+Vector operator*=(Vector &rhs, value lambda)
+{
+    for (size_t i = 0; i < rhs.getSize(); i++) {
+        rhs[i] *= lambda; // doute
+    }
+    return rhs;
 }
