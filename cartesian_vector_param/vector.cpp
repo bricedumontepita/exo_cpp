@@ -22,7 +22,7 @@ Vector::Vector()
 
 Vector::Vector(std::initializer_list<value> l)
 {
-    size_ = l.size();
+    size_ = NDIM;
     size_t index = 0;
     std::initializer_list<value>::iterator it;
     for (it = l.begin(); it != l.end(); ++it)
@@ -37,7 +37,6 @@ size_t Vector::getSize() const {
 
 Vector &Vector::operator+=(const Vector &rhs)
 {
-    assert(rhs.getSize() <= this->getSize());
     for (size_t i = 0; i < rhs.getSize(); i++) {
         coords_[i] += rhs[i];
     }
@@ -46,12 +45,10 @@ Vector &Vector::operator+=(const Vector &rhs)
 
 Vector &Vector::operator-=(const Vector &rhs)
 {
-    assert(rhs.getSize() <= this->getSize());
     for (size_t i = 0; i < rhs.getSize(); i++) {
         coords_[i] -= rhs[i];
     }
     return *this;
-
 }
 
 Vector Vector::operator+(const Vector &rhs)
@@ -67,7 +64,7 @@ Vector Vector::operator-(const Vector &rhs)
 {
     auto u = Vector();
     for (size_t i = 0; i < rhs.getSize(); i++) {
-        u[i] = (*this)[i] - rhs[i]; // doute
+        u[i] = (*this)[i] - rhs[i];
     }
     return u;
 }
@@ -118,7 +115,7 @@ Vector operator*(const Vector &rhs, value lambda)
 Vector operator+=(Vector &rhs, value lambda)
 {
     for (size_t i = 0; i < rhs.getSize(); i++) {
-        rhs[i] += lambda; // doute
+        rhs[i] += lambda;
     }
     return rhs;
 }
@@ -126,7 +123,7 @@ Vector operator+=(Vector &rhs, value lambda)
 Vector operator*=(Vector &rhs, value lambda)
 {
     for (size_t i = 0; i < rhs.getSize(); i++) {
-        rhs[i] *= lambda; // doute
+        rhs[i] *= lambda;
     }
     return rhs;
 }
