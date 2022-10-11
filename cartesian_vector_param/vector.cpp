@@ -29,6 +29,9 @@ Vector::Vector(std::initializer_list<value> l)
     {
         coords_[index++] = *it;
     }
+    for (index; index < size_; index++) {
+        coords_[index] = 0;
+    }
 }
 
 size_t Vector::getSize() const {
