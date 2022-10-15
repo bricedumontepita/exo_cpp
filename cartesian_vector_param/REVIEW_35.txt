@@ -1,0 +1,22 @@
+## CARTESIAN VECTOR PARAM
+
+# Logique du code
+
+- Il y a une inversion des opérandes lors de la soustraction (ligne 69)
+- La taille des vecteurs est fixée par la macro NDIM :
+
+	Donc un vecteur initialisé par le constructeur non vide devrait générer un vecteur de dimensions NDIM 
+    et non de l.side.
+	Ex: NDIM = 2 : Vector(1) renvoit {1,0}, mais pas {1}.
+
+
+# Repository
+
+- Le fichier DS_Store ne devrait pas être versionné.
+
+
+# Coding style (Optionnelle)
+
+- Les variables « privates » finissent conventionnellement par un ‘_’ d’après le cours.
+- Ligne 39 : «  rhs.p[i] »  revient à faire « rhs[i] » 
+
