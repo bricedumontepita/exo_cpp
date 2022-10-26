@@ -10,6 +10,8 @@
 #include <initializer_list>
 #include "vector.hh"
 
+
+    
 Vector& Vector::operator=(const Vector& v) {
     size_ = v.size();
     for (size_t i = 0; i < size_; i++)
@@ -55,7 +57,8 @@ size_t Vector::size() const {
 
 Vector& Vector::operator+=(const Vector &rhs)
 {
-    assert(size_ == rhs.size());
+    if (this->size() != rhs.size())
+        throw std::runtime_error("Incompatible size");
     for (size_t i = 0; i < rhs.size(); i++) {
         coords_[i] += rhs[i];
     }
@@ -64,7 +67,8 @@ Vector& Vector::operator+=(const Vector &rhs)
 
 Vector& Vector::operator-=(const Vector &rhs)
 {
-    assert(size_ == rhs.size());
+    if (this->size() != rhs.size())
+        throw std::runtime_error("Incompatible size");
     for (size_t i = 0; i < rhs.size(); i++) {
         coords_[i] -= rhs[i];
     }
@@ -89,7 +93,8 @@ Vector& Vector::operator*=(value lambda)
 
 Vector Vector::operator+(const Vector &rhs) const
 {
-    assert(size_ == rhs.size());
+    if (this->size() != rhs.size())
+        throw std::runtime_error("Incompatible size");
     auto u = Vector(size_);
     for (size_t i = 0; i < size_; i++) {
         u[i] = rhs[i] + (*this)[i];
@@ -119,7 +124,8 @@ Vector Vector::operator-(const Vector &rhs) const
 
 value Vector::operator*(const Vector &rhs) const
 {
-    assert(size_ == rhs.size());
+    if (this->size() != rhs.size())
+        throw std::runtime_error("Incompatible size");
     value n = 0;
     for (size_t i = 0; i < size_; i++) {
         n += rhs[i] * (*this)[i];
