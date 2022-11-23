@@ -4,6 +4,8 @@
 !*.cpp
 !*.h
 !*.hh
+!*.cc
+!*.hpp
 !*.txt
 !*.md
 !.gitignore
@@ -11,6 +13,8 @@
 !find_motive
 !cartesian_vector_param
 !cartesian_vector_variable
+!selection_sort
+!selection_sort_file
 
 
 */CMakeCache.txt
