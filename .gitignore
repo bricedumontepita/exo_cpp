@@ -16,6 +16,7 @@
 !selection_sort
 !selection_sort_file
 !selection_sort_file_meta
+!set_functions
 
 
 */CMakeCache.txt
